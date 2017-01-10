@@ -58,22 +58,17 @@ public class FellowshipAssertionTest {
 
     @Test
     public void shouldContainNineFellowsButNoneGiant() {
-    	//fail("Not yet implemented");
-        assertThat(fellowship).hasSize(9);
-    	//assertThat(fellowship).hasSize(9).doesNotContain("Giant");
-    }
+    	assertThat(fellowship).hasSize(9).extracting(Fellow::getRace).doesNotContain(Fellow.Race.GIANT);
+    	}
     
     @Test
 	public void shouldContainTupleForBoromirSamAndLegolas() {
         // Extracting multiple values at once (using tuple to group them)
         // Create tuples with name and race name
-    	/*assertThat(fellowship).extracting(Fellow::getName,Fellow::getRace).
-                contains(
-                        tuple(boromir().getName(),sam().getRace(),
-                        tuple(boromir().getName(),legolas().getRace()),
-                        tuple(sam().getName(),legolas().getRace())));
-	}*/
-        fail("Not yet implemented");
+    	assertThat(fellowship).extracting(Fellow::getName,Fellow::getRace).contains(
+                        tuple(boromir().getName(),boromir().getRace(),
+                        tuple(sam().getName(),sam().getRace()),
+                        tuple(legolas().getName(),legolas().getRace())));
     }
     @Test
 	public void shouldContaintFourHobbits() {
